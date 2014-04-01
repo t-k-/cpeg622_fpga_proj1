@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/tk/Desktop/cpeg622/proj1/part3/recv_test_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="recv_test" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/recv_test/rx_dout" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_dout[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_dout[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/rx_done" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_done</obj_property>
+      <obj_property name="ObjectShortName">rx_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/tx_done" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">tx_done</obj_property>
+      <obj_property name="ObjectShortName">tx_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/tx_din" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tx_din[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_din[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/tx_start" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">tx_start</obj_property>
+      <obj_property name="ObjectShortName">tx_start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/uut/state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/uut/p" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">p[3:0]</obj_property>
+      <obj_property name="ObjectShortName">p[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/recv_test/uut/wr_ctrl" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wr_ctrl</obj_property>
+      <obj_property name="ObjectShortName">wr_ctrl</obj_property>
+   </wvobject>
+</wave_config>

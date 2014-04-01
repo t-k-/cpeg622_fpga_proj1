@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/tk/Desktop/cpeg622/proj1/part3/recv_test_isim_beh.exe" -prj "/home/tk/Desktop/cpeg622/proj1/part3/recv_test_beh.prj" "work.recv_test" 

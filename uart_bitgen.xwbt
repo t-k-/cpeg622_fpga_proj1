@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/tk/Desktop/cpeg622/proj1/part3/uart.ncd
+OUTFILE=/home/tk/Desktop/cpeg622/proj1/part3/uart.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=/home/tk/Desktop/cpeg622/proj1/part3
+LICENSE=ISE
+USER_INFO=179407318_174132022_210572080_505

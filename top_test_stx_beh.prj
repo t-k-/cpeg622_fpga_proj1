@@ -1,0 +1,6 @@
+vhdl isim_temp "trans.vhd"
+vhdl isim_temp "list_ch07_03_uart_tx.vhd"
+vhdl isim_temp "list_ch07_01_uart_rx.vhd"
+vhdl isim_temp "list_ch04_11_mod_m.vhd"
+vhdl isim_temp "top_module.vhd"
+vhdl isim_temp "top_test.vhd"
