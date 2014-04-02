@@ -24,11 +24,10 @@ architecture arch_recv of ent_recv is
 	signal buff : buff_t;
 	signal p, next_p, q: unsigned(BUF_BITS - 1 downto 0);
 	signal wr_ctrl, next_wr_ctrl : std_logic;
+	signal next_err_head, next_err_tail : std_logic;
 	signal next_tx_start : std_logic;
 	constant ones : std_logic_vector(WORD_BITS - 1 downto 0) := (others=>'1'); 
 begin
-err_head <= '1';
-err_tail <= '0';
 
 q <= unsigned(BUFF_LEN - p - 1);
 tx_din <= buff(to_integer(q));
@@ -42,6 +41,9 @@ begin
 		p <= (others=>'1');
 		tx_start <= '0';
 		wr_ctrl <= '0';
+		
+		err_head <= '0';
+		err_tail <= '0';
 	elsif (rising_edge(clk)) then
 		if (wr_ctrl = '1') then 
 			buff(to_integer(p)) <= rx_dout;
@@ -51,23 +53,33 @@ begin
 		p <= next_p;
 		tx_start <= next_tx_start;
 		wr_ctrl <= next_wr_ctrl;
+		
+		err_head <= next_err_head;
+		err_tail <= next_err_tail;
 	end if;
 end process;
 
-process (rx_done, tx_done, state, p, rx_dout) 
+process (rx_done, tx_done, state, p, rx_dout,
+			err_head, err_tail) 
 begin
     next_state <= state;
     next_p <= p;
     next_tx_start <= '0';
     next_wr_ctrl <= '0';
-    
+	 
+	 next_err_head <= err_head;
+    next_err_tail <= err_tail;
+	 
     case state is
         when head_s =>
             if (rx_done = '1') then
                 next_p <= (others=>'1');
                 if (unsigned(rx_dout) = 0) then 
                   next_state <= data_s;
-                --else
+						next_err_head <= '0';
+                else
+						next_err_head <= '1';
+						next_err_tail  <= '0';
                 end if; 
             end if; 
 			when data_s =>
@@ -86,7 +98,9 @@ begin
 				if (rx_done = '1') then
 					if (rx_dout = ones) then
 						next_state <= signal_s;
+						next_err_tail <= '0';
 					else
+						next_err_tail <= '1';
 						next_state <= head_s;
 					end if;
 				end if;

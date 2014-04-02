@@ -10,8 +10,6 @@ TIMESPEC TS_sys_clk_pin = PERIOD "sys_clk_pin" 100000 KHz;
 NET "err_head" LOC = "U16" | IOSTANDARD = "LVCMOS33"; # LED0
 NET "err_tail" LOC = "V16" | IOSTANDARD = "LVCMOS33"; # LED1
 
-NET "neighbor_rx" LOC = "R11" | IOSTANDARD = "LVCMOS33"; # LED6
-NET "neighbor_tx" LOC = "T11" | IOSTANDARD = "LVCMOS33"; # LED7
 
 ## Switches
 NET "encry_code[0]" LOC = "T10" | IOSTANDARD = "LVCMOS33"; # SW0

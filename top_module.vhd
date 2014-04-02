@@ -51,7 +51,7 @@ begin
 		port map(rst=>reset, clk=>clk,
 		         rx_dout=>pc_rx_dout_encry, rx_done=>pc_rx_done,
 		         tx_done=>neighbor_tx_done, tx_din=>neighbor_tx_din, 
-					tx_start=>neighbor_tx_start);
+					tx_start=>neighbor_tx_start, code=>encry_code);
 					
 	neighbor_tx_unit: entity work.uart_tx(arch)
       generic map(DBIT=>DBIT, SB_TICK=>SB_TICK)
