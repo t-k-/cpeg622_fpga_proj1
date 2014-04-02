@@ -36,5 +36,5 @@ TIMESPEC TS_sys_clk_pin = PERIOD "sys_clk_pin" 100000 KHz;
 # PlanAhead Generated physical constraints 
 
 NET "reset" LOC = T10;
-NET "tx" LOC = N18;
-NET "rx" LOC = N17;
+NET "pc_tx" LOC = N18;
+NET "pc_rx" LOC = N17;

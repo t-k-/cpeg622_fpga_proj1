@@ -129,7 +129,17 @@ BEGIN
 		
 		wait for 1 us;
 		
+		for i in 0 to 15
+		loop
+			tx_done <= '1';
+			wait for clk_period;
+			tx_done <= '0';
+			wait for clk_period * 4;
+		end loop;
+		
+		wait for 1 us;
       wait;
+		
    end process;
 
 END;

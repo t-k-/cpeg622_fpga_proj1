@@ -1,5 +1,0 @@
-vhdl work "recv.vhd"
-vhdl work "list_ch07_03_uart_tx.vhd"
-vhdl work "list_ch07_01_uart_rx.vhd"
-vhdl work "list_ch04_11_mod_m.vhd"
-vhdl work "top_module.vhd"

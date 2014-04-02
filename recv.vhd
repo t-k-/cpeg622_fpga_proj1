@@ -22,50 +22,50 @@ architecture arch_recv of ent_recv is
 	type stat_t is (head_s, data_s, data_wr_s, tail_s, put_s, signal_s);
 	signal state, next_state : stat_t;
 	signal buff : buff_t;
-	signal p, next_p: unsigned(BUF_BITS - 1 downto 0);
+	signal p, next_p, q: unsigned(BUF_BITS - 1 downto 0);
 	signal wr_ctrl, next_wr_ctrl : std_logic;
 	signal next_tx_start : std_logic;
 	constant ones : std_logic_vector(WORD_BITS - 1 downto 0) := (others=>'1'); 
 begin
 err_head <= '1';
 err_tail <= '0';
---tx_din <= buff(BUFF_LEN - to_integer(p));
-tx_din <= rx_dout;
-tx_start <= rx_done and tx_done;
+
+q <= unsigned(BUFF_LEN - p - 1);
+tx_din <= buff(to_integer(q));
 
 process (clk, rst)
 begin	
 	if (rst = '1') then
+		buff <= (others=>(others=>'0'));
+		
 		state <= head_s;
 		p <= (others=>'1');
-		--tx_start <= '0';
+		tx_start <= '0';
 		wr_ctrl <= '0';
-		
-		--buff <= (others=>(others=>'0'));
 	elsif (rising_edge(clk)) then
+		if (wr_ctrl = '1') then 
+			buff(to_integer(p)) <= rx_dout;
+		end if;
+		
 		state <= next_state;
 		p <= next_p;
-		--tx_start <= next_tx_start;
-
+		tx_start <= next_tx_start;
 		wr_ctrl <= next_wr_ctrl;
-		if (wr_ctrl = '1') then 
-			--buff(to_integer(p)) <= rx_dout;
-		end if;
 	end if;
 end process;
 
-process (rx_done, state, rx_dout, p, tx_done, buff) 
+process (rx_done, tx_done, state, p, rx_dout) 
 begin
     next_state <= state;
     next_p <= p;
-    --next_tx_start <= '0';
+    next_tx_start <= '0';
     next_wr_ctrl <= '0';
     
     case state is
         when head_s =>
             if (rx_done = '1') then
                 next_p <= (others=>'1');
-                if (unsigned(rx_dout) = 0) then
+                if (unsigned(rx_dout) = 0) then 
                   next_state <= data_s;
                 --else
                 end if; 
@@ -85,7 +85,7 @@ begin
 			when tail_s =>
 				if (rx_done = '1') then
 					if (rx_dout = ones) then
-						next_state <= put_s;
+						next_state <= signal_s;
 					else
 						next_state <= head_s;
 					end if;
@@ -102,9 +102,7 @@ begin
 			when signal_s =>
 				next_tx_start <= '1';
 				next_state <= put_s;
-
     end case;
-	 
 end process;
 
 end arch_recv;
